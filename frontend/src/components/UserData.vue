@@ -1,28 +1,30 @@
 <template>
   <div>
-    <table>
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Email</th>
-          <th>Latitude</th>
-          <th>Longitude</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr
-          v-for="user in users"
-          :key="user.id"
-          @click="showWeatherReport(user)"
-        >
-          <td>{{ user.name }}</td>
-          <td>{{ user.email }}</td>
-          <td>{{ user.latitude }}</td>
-          <td>{{ user.longitude }}</td>
-        </tr>
-      </tbody>
-    </table>
-
+    <template v-if="users.length > 0">
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Latitude</th>
+            <th>Longitude</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            v-for="user in users"
+            :key="user.id"
+            @click="showWeatherReport(user)"
+          >
+            <td>{{ user.name }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.latitude }}</td>
+            <td>{{ user.longitude }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </template>
+    <template v-else> Loading user data... </template>
     <modal
       :title="selectedUser ? selectedUser.name + '\'s Weather Report' : ''"
       v-model:is-open="isModalOpen"
@@ -31,12 +33,12 @@
       <div v-if="selectedUser">
         <template v-if="selectedUser.weather">
           <p>
-             <strong>Temperature</strong>:
+            <strong>Temperature</strong>:
             {{
               selectedUser.weather.current
                 ? selectedUser.weather.current.temp
                 : ""
-            }} 
+            }} 'c
           </p>
           <p>
             <strong>Humidity</strong>:
@@ -44,7 +46,7 @@
               selectedUser.weather.current
                 ? selectedUser.weather.current.humidity
                 : ""
-            }}
+            }} %
           </p>
           <p>
             <strong>Wind Speed:</strong>
@@ -52,7 +54,7 @@
               selectedUser.weather.current
                 ? selectedUser.weather.current.wind_speed
                 : ""
-            }}
+            }} km/h
           </p>
         </template>
         <template v-else>
