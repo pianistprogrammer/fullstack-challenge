@@ -5,7 +5,7 @@ import { RouterLink, RouterView } from "vue-router";
 <template>
   <header>
     <div class="wrapper">
-      <nav>
+      <nav class="text-center mb-5">
         <RouterLink to="/">Home</RouterLink>
       </nav>
     </div>
@@ -14,5 +14,10 @@ import { RouterLink, RouterView } from "vue-router";
 </template>
 
 <style scoped>
-
+.text-center{
+  text-align: center;
+}
+.mb-5{
+  margin-bottom: 5rem;
+}
 </style>

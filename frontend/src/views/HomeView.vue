@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import ApiTest from "@/components/ApiTest.vue";
+import UserData from "@/components/UserData.vue";
 </script>
 
 <template>
   <main>
-    <api-test></api-test>
+    <user-data></user-data>
   </main>
 </template>
